@@ -15,6 +15,16 @@ https://www.pgadmin.org/download/pgadmin-4-windows/
 
 ## After downloading everything. 
 
+## Setting up PostgreSQL DB
+
+- Go to PgAdmin 4
+- Create new DB
+- Go to the src/main/resources/application.properties
+- Insert your DB data
+![image](https://github.com/user-attachments/assets/9d40e44c-5f67-4b53-a832-01958dcdb683)
+
+# After finishing setup DB
+
 Open the project directory (Just a directory with project)
 
 - Open terminal (admin) at this directory and run
@@ -27,6 +37,7 @@ Open the project directory (Just a directory with project)
 ```
 java -jar [name of the jar file].jar
 ```
+
 
 Then go to **localhost:8080/swagger-ui.html**
 
