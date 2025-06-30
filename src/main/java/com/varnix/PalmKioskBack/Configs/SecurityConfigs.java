@@ -52,7 +52,7 @@ public class SecurityConfigs {
                                         "/swagger-ui.html",
                                         "/swagger-ui/**",
                                         "/swagger-resources/**",
-                                        "/webjars/**", "refresh").permitAll()
+                                        "/webjars/**", "refresh", "/register").permitAll()
                                 .requestMatchers("/me", "/sec", "/**").authenticated()
                                 .requestMatchers("/admin").hasRole("ADMIN")
                                 .anyRequest().denyAll();
