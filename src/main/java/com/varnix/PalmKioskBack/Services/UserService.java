@@ -1,6 +1,7 @@
 package com.varnix.PalmKioskBack.Services;
 
 import com.varnix.PalmKioskBack.Dtos.RegistrationUserDto;
+import com.varnix.PalmKioskBack.Entities.Role;
 import com.varnix.PalmKioskBack.Entities.User;
 import com.varnix.PalmKioskBack.Repositories.RoleRepository;
 import com.varnix.PalmKioskBack.Repositories.UserRepository;
@@ -38,7 +39,9 @@ public class UserService implements UserDetailsService {
         user.setUsername(registrationUserDto.getUsername());
         user.setPassword(passwordEncoder.encode(registrationUserDto.getPassword()));
         user.setEmail(registrationUserDto.getEmail());
-        user.setRoles(List.of(roleService.getUserRole()));
+
+        Role defaultRole = roleService.getUserRole();
+        user.setRoles(List.of(defaultRole));
 
         return userRepository.save(user);
     }
