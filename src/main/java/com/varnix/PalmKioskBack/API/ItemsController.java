@@ -37,7 +37,7 @@ public class ItemsController {
         this.categoryService = categoryService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping("/item/{id}")
     public ResponseEntity<?> getItem(@PathVariable Long id) {
         Optional<Item> itemOpt = itemService.findById(id);
         if (itemOpt.isEmpty()) {
@@ -58,10 +58,15 @@ public class ItemsController {
     }
 
     @GetMapping("/allItems")
-    public ResponseEntity<List<Item>> getAllItems() {
+    public ResponseEntity<List<ItemDTO>> getAllItems() {
         List<Item> items = itemService.getAllItems();
         if (items.isEmpty()) return ResponseEntity.noContent().build();
-        return ResponseEntity.ok(items);
+
+        List<ItemDTO> itemDTOs = items.stream()
+                .map(this::convertToDTO)
+                .toList();
+
+        return ResponseEntity.ok(itemDTOs);
     }
 
     @PostMapping(value = "/saveItem", consumes = {"multipart/form-data"})
@@ -148,7 +153,7 @@ public class ItemsController {
         return ResponseEntity.ok(responseDto);
     }
 
-    @PutMapping(value = "/{id}", consumes = {"multipart/form-data"})
+    @PutMapping(value = "/item/upd/{id}", consumes = {"multipart/form-data"})
     public ResponseEntity<?> updateItem(
             @PathVariable Long id,
             @RequestPart("item") ItemDTO itemDTO,
@@ -218,7 +223,7 @@ public class ItemsController {
     }
 
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/item/delete/{id}")
     public ResponseEntity<?> deleteItem(@PathVariable Long id) {
         boolean exists = itemService.existsById(id);
         if (!exists) {
@@ -227,6 +232,19 @@ public class ItemsController {
         }
         itemService.deleteById(id);
         return ResponseEntity.noContent().build();  // 204 No Content
+    }
+
+
+
+    private ItemDTO convertToDTO(Item item) {
+        ItemDTO dto = new ItemDTO();
+        dto.setId(item.getId());
+        dto.setName(item.getName());
+        dto.setDescription(item.getDescription());
+        dto.setImage(item.getImageUrl());
+        dto.setPrice(item.getPrice());
+        dto.setCategory(item.getCategory().getName()); // если категория может быть null — добавить проверку
+        return dto;
     }
 
 }

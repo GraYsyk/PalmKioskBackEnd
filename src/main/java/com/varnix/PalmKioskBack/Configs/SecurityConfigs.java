@@ -52,9 +52,9 @@ public class SecurityConfigs {
                                         "/swagger-ui.html",
                                         "/swagger-ui/**",
                                         "/swagger-resources/**",
-                                        "/webjars/**", "refresh", "/register").permitAll()
+                                        "/webjars/**", "refresh", "/register", "/allItems", "/item/").permitAll()
                                 .requestMatchers("/me", "/sec", "/**").authenticated()
-                                .requestMatchers("/admin").hasRole("ADMIN")
+                                .requestMatchers("/admin", "/saveItem", "/item/delete/", "/item/upd/").hasRole("ADMIN")
                                 .anyRequest().denyAll();
                     } catch (Exception e) {
                         throw new RuntimeException(e);
