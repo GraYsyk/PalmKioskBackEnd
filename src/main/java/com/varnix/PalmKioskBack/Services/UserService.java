@@ -61,4 +61,9 @@ public class UserService implements UserDetailsService {
                 user.getRoles().stream().map(role -> new SimpleGrantedAuthority(role.getName())).collect(Collectors.toList())
         );
     }
+
+    @Transactional
+    public void save(User user) {
+        userRepository.save(user);
+    }
 }

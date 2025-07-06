@@ -19,6 +19,11 @@ public class RoleService {
                 .orElseThrow(() -> new RuntimeException("ROLE_USER not found in the database"));
     }
 
+    public Role getAdminRole() {
+        return roleRepository.findByName("ROLE_ADMIN")
+                .orElseThrow(() -> new RuntimeException("ROLE_ADMIN not found in the database"));
+    }
+
     public void createRole(Role role) {
         roleRepository.save(role);
     }
