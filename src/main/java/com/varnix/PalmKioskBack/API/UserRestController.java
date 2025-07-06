@@ -43,6 +43,10 @@ public class UserRestController {
         return ResponseEntity.ok(new UserInfoDTO(user.get().getId(), user.get().getUsername(), user.get().getEmail(), roles));
     }
 
+
+    //TODO: TEST
+
+
     @GetMapping("/admin/{username}")
     public ResponseEntity<?> admin(@PathVariable String username) {
         Optional<User> user = userService.findByUsername(username);

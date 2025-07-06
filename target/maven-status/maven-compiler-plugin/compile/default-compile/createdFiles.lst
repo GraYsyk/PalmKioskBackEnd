@@ -1,5 +1,6 @@
 com\varnix\PalmKioskBack\Dtos\RegistrationUserDto.class
 com\varnix\PalmKioskBack\Entities\Item.class
+com\varnix\PalmKioskBack\API\CategoryController.class
 com\varnix\PalmKioskBack\Services\CategoryService.class
 com\varnix\PalmKioskBack\Configs\SecurityConfigs.class
 com\varnix\PalmKioskBack\Dtos\CommentDTO.class
@@ -33,6 +34,7 @@ com\varnix\PalmKioskBack\Dtos\JwtResponse.class
 com\varnix\PalmKioskBack\Exceptions\AppError.class
 com\varnix\PalmKioskBack\API\AuthController.class
 com\varnix\PalmKioskBack\Entities\User.class
+com\varnix\PalmKioskBack\Dtos\CategoryDTO.class
 com\varnix\PalmKioskBack\API\CommentController.class
 com\varnix\PalmKioskBack\Entities\Comment.class
 com\varnix\PalmKioskBack\Repositories\RoleRepository.class

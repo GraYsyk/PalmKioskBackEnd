@@ -1,7 +1,5 @@
 package com.varnix.PalmKioskBack.Dtos;
 
-import com.varnix.PalmKioskBack.Entities.Category;
-
 public class ItemDTO {
     private Long id;
     private String name;

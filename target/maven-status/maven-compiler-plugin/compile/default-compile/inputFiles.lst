@@ -1,4 +1,5 @@
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\API\AuthController.java
+C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\API\CategoryController.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\API\CommentController.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\API\ItemsController.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\API\ReactionController.java
@@ -6,6 +7,7 @@ C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Configs\JwtRequestFilter.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Configs\SecurityConfigs.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Configs\WebConfig.java
+C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Dtos\CategoryDTO.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Dtos\CommentDTO.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Dtos\ItemDTO.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Dtos\JwtRequest.java
