@@ -1,5 +1,6 @@
 package com.varnix.PalmKioskBack.API;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.varnix.PalmKioskBack.Dtos.ItemDTO;
 import com.varnix.PalmKioskBack.Entities.Category;
 import com.varnix.PalmKioskBack.Entities.Item;
@@ -8,6 +9,7 @@ import com.varnix.PalmKioskBack.Services.CategoryService;
 import com.varnix.PalmKioskBack.Services.ItemService;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
@@ -69,10 +71,15 @@ public class ItemsController {
         return ResponseEntity.ok(itemDTOs);
     }
 
-    @PostMapping(value = "/saveItem", consumes = {"multipart/form-data"})
+    @PostMapping(value = "/saveItem", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> createItem(
-            @RequestPart("item") ItemDTO itemDTO,
+            @RequestParam("item") String itemJson,
             @RequestPart("image") MultipartFile imageFile) throws IOException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        ItemDTO itemDTO = mapper.readValue(itemJson, ItemDTO.class);
+
+        System.out.println(">>> createItem reached");
 
         // Проверка файла
         if (imageFile == null || imageFile.isEmpty()) {
