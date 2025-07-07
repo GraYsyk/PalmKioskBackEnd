@@ -6,6 +6,7 @@ import com.varnix.PalmKioskBack.Entities.User;
 import com.varnix.PalmKioskBack.Repositories.RoleRepository;
 import com.varnix.PalmKioskBack.Repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.annotation.ReadOnlyProperty;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -31,6 +32,11 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
         this.roleService = roleService;
         this.passwordEncoder = passwordEncoder;
+    }
+
+    @ReadOnlyProperty
+    public Optional<User> findById(Long id) {
+        return userRepository.findById(id);
     }
 
     @Transactional

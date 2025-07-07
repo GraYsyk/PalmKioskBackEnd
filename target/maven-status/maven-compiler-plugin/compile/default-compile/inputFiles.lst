@@ -2,7 +2,6 @@ C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\API\CategoryController.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\API\CommentController.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\API\ItemsController.java
-C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\API\ReactionController.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\API\UserRestController.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Configs\JwtRequestFilter.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Configs\SecurityConfigs.java
@@ -18,14 +17,12 @@ C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Entities\Category.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Entities\Comment.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Entities\Item.java
-C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Entities\ItemReaction.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Entities\Role.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Entities\User.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Exceptions\AppError.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\PalmKioskBackApplication.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Repositories\CategoryRepository.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Repositories\CommentRepository.java
-C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Repositories\ItemReactionRepository.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Repositories\ItemRepository.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Repositories\RoleRepository.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Repositories\UserRepository.java
@@ -33,7 +30,6 @@ C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Services\CategoryService.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Services\CommentService.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Services\ItemService.java
-C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Services\ReactionService.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Services\RoleService.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Services\UserService.java
 C:\Users\kolab\IdeaProjects\PalmKioskBack\src\main\java\com\varnix\PalmKioskBack\Utils\JWTTokenUtils.java

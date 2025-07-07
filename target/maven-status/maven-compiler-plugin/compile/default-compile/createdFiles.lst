@@ -7,10 +7,7 @@ com\varnix\PalmKioskBack\Dtos\CommentDTO.class
 com\varnix\PalmKioskBack\API\ItemsController.class
 com\varnix\PalmKioskBack\Entities\Category.class
 com\varnix\PalmKioskBack\Configs\JwtRequestFilter.class
-com\varnix\PalmKioskBack\API\ReactionController$ReactionStatsDTO.class
-com\varnix\PalmKioskBack\Services\ReactionService.class
 com\varnix\PalmKioskBack\Services\AuthService.class
-com\varnix\PalmKioskBack\Entities\ItemReaction.class
 com\varnix\PalmKioskBack\Dtos\ItemDTO.class
 com\varnix\PalmKioskBack\PalmKioskBackApplication.class
 com\varnix\PalmKioskBack\Services\ItemService.class
@@ -27,9 +24,7 @@ com\varnix\PalmKioskBack\Dtos\UserDTO.class
 com\varnix\PalmKioskBack\Entities\Role.class
 com\varnix\PalmKioskBack\Repositories\UserRepository.class
 com\varnix\PalmKioskBack\Dtos\UserInfoDTO.class
-com\varnix\PalmKioskBack\API\ReactionController.class
 com\varnix\PalmKioskBack\Repositories\CommentRepository.class
-com\varnix\PalmKioskBack\Repositories\ItemReactionRepository.class
 com\varnix\PalmKioskBack\Dtos\JwtResponse.class
 com\varnix\PalmKioskBack\Exceptions\AppError.class
 com\varnix\PalmKioskBack\API\AuthController.class

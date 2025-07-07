@@ -3,7 +3,7 @@ package com.varnix.PalmKioskBack.Dtos;
 public class CommentDTO {
     private Long id;
     private String text;
-    private String date; // Лучше как ISO-строка (например: "2024-06-27T12:34:56")
+    private Float rating;
 
     private Long userId;
     private String username;
@@ -12,10 +12,10 @@ public class CommentDTO {
 
     public CommentDTO() {}
 
-    public CommentDTO(Long id, String text, String date, Long userId, String username, Long itemId) {
+    public CommentDTO(Long id, String text,Float rating,Long userId, String username, Long itemId) {
         this.id = id;
         this.text = text;
-        this.date = date;
+        this.rating = rating;
         this.userId = userId;
         this.username = username;
         this.itemId = itemId;
@@ -37,12 +37,12 @@ public class CommentDTO {
         this.text = text;
     }
 
-    public String getDate() {
-        return date;
+    public Float getRating() {
+        return rating;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+    public void setRating(Float rating) {
+        this.rating = rating;
     }
 
     public Long getUserId() {

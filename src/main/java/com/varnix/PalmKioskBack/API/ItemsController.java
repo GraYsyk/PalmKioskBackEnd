@@ -160,11 +160,14 @@ public class ItemsController {
         return ResponseEntity.ok(responseDto);
     }
 
-    @PutMapping(value = "/item/upd/{id}", consumes = {"multipart/form-data"})
+    @PutMapping(value = "/item/upd/{id}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> updateItem(
             @PathVariable Long id,
-            @RequestPart("item") ItemDTO itemDTO,
+            @RequestParam("item") String itemJson,
             @RequestPart(value = "image", required = false) MultipartFile imageFile) throws IOException {
+
+        ObjectMapper mapper = new ObjectMapper();
+        ItemDTO itemDTO = mapper.readValue(itemJson, ItemDTO.class);
 
         Optional<Item> itemOpt = itemService.findById(id);
         if (itemOpt.isEmpty()) {

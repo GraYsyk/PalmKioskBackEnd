@@ -3,6 +3,7 @@ package com.varnix.PalmKioskBack.Entities;
 import jakarta.persistence.*;
 
 import java.security.Timestamp;
+import java.time.LocalDateTime;
 
 
 @Entity
@@ -17,7 +18,10 @@ public class Comment {
     private String text;
 
     @Column(nullable = false, name = "date")
-    private Timestamp date;
+    private LocalDateTime date;
+
+    @Column(name = "rating")
+    private Float rating;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "user_id", nullable = false)
@@ -27,10 +31,11 @@ public class Comment {
     @JoinColumn(name = "item_id", nullable = false)
     private Item item;
 
-    public Comment(String text, Timestamp date, User user) {
+    public Comment(String text, LocalDateTime date, Float rating,User user) {
         this.text = text;
         this.date = date;
         this.user = user;
+        this.rating = rating;
     }
 
     public Comment() {}
@@ -51,12 +56,20 @@ public class Comment {
         this.text = text;
     }
 
-    public Timestamp getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Timestamp date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
+    }
+
+    public Float getRating() {
+        return rating;
+    }
+
+    public void setRating(Float rating) {
+        this.rating = rating;
     }
 
     public User getUser() {
