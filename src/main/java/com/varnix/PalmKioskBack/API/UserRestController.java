@@ -1,5 +1,6 @@
 package com.varnix.PalmKioskBack.API;
 
+import com.varnix.PalmKioskBack.Dtos.UserDTO;
 import com.varnix.PalmKioskBack.Dtos.UserInfoDTO;
 import com.varnix.PalmKioskBack.Entities.Role;
 import com.varnix.PalmKioskBack.Entities.User;
@@ -41,27 +42,5 @@ public class UserRestController {
             return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "User not found"), HttpStatus.UNAUTHORIZED);
         }
         return ResponseEntity.ok(new UserInfoDTO(user.get().getId(), user.get().getUsername(), user.get().getEmail(), roles));
-    }
-
-
-    //TODO: TEST
-
-
-    @GetMapping("/admin/{username}")
-    public ResponseEntity<?> admin(@PathVariable String username) {
-        Optional<User> user = userService.findByUsername(username);
-        if (user.isEmpty()) {
-            return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "User not found"), HttpStatus.UNAUTHORIZED);
-        }
-        User userEntity = user.get();
-        userEntity.setRoles(new ArrayList<>(List.of(roleService.getAdminRole(), roleService.getUserRole())));
-
-        List<String> roles = new ArrayList<>();
-        for (Role role : userEntity.getRoles()) {
-            roles.add(role.getName());
-        }
-
-        userService.save(userEntity);
-        return ResponseEntity.ok(new UserInfoDTO(userEntity.getId(), userEntity.getUsername(), userEntity.getEmail(), roles));
     }
 }

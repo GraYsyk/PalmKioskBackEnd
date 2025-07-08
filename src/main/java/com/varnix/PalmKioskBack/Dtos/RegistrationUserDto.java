@@ -1,9 +1,5 @@
 package com.varnix.PalmKioskBack.Dtos;
 
-import com.varnix.PalmKioskBack.Entities.Role;
-
-import java.util.Collection;
-
 public class RegistrationUserDto {
     private String username;
     private String password;

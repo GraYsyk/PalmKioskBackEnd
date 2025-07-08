@@ -1,5 +1,6 @@
 com\varnix\PalmKioskBack\Dtos\RegistrationUserDto.class
 com\varnix\PalmKioskBack\Entities\Item.class
+com\varnix\PalmKioskBack\API\AdminController.class
 com\varnix\PalmKioskBack\API\CategoryController.class
 com\varnix\PalmKioskBack\Services\CategoryService.class
 com\varnix\PalmKioskBack\Configs\SecurityConfigs.class

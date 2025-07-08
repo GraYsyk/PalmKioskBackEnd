@@ -58,7 +58,8 @@ public class SecurityConfigs {
                                 .requestMatchers("/me", "/**", "/comm/del/", "/comm/post/").authenticated()
                                 .requestMatchers(
                                         "/saveItem", "/item/delete/", "/item/upd/",
-                                        "/cat/all", "/cat/create/","/cat/update/", "/cat/delete/").hasRole("ADMIN")
+                                        "/cat/**",
+                                        "/admin/**").hasRole("ADMIN")
                                 .anyRequest().denyAll();
                     } catch (Exception e) {
                         throw new RuntimeException(e);
