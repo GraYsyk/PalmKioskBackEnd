@@ -10,16 +10,16 @@ import io.swagger.v3.oas.annotations.Operation;
 import org.springdoc.core.annotations.ParameterObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.context.annotation.Role;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
-import java.util.Map;
-import java.util.Optional;
+import java.util.*;
 
 @RestController
 @RequestMapping("/admin")
@@ -74,9 +74,9 @@ public class AdminController {
         boolean isAdmin = user.getRoles().stream()
                 .anyMatch(role -> "ROLE_ADMIN".equals(role.getName()));
         if (!isAdmin) {
-            user.setRoles(List.of(roleService.getUserRole(), roleService.getAdminRole()));
+            user.setRoles(new ArrayList<>(List.of(roleService.getUserRole(), roleService.getAdminRole())));
         } else {
-            user.setRoles(List.of(roleService.getUserRole()));
+            user.setRoles(new ArrayList<>(List.of(roleService.getUserRole())));
         }
 
         userService.save(user);
@@ -119,11 +119,11 @@ public class AdminController {
 
     @Operation(summary = "Update user's username, email, and password by user id")
     @PatchMapping("/users/update")
-    public ResponseEntity<?> updateUser(@RequestParam Long id, @RequestBody UserDTO updateDto) {
-        Optional<User> userOpt = userService.findById(id);
+    public ResponseEntity<?> updateUser(@RequestBody UserDTO updateDto) {
+        Optional<User> userOpt = userService.findById(updateDto.getId());
         if (userOpt.isEmpty()) {
             return new ResponseEntity<>(
-                    new AppError(HttpStatus.NOT_FOUND.value(), "User with id " + id + " was not found"),
+                    new AppError(HttpStatus.NOT_FOUND.value(), "User with id " + updateDto.getId() + " was not found"),
                     HttpStatus.NOT_FOUND
             );
         }

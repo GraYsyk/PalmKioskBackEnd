@@ -55,11 +55,12 @@ public class SecurityConfigs {
                                         "/swagger-resources/**",
                                         "/webjars/**",
                                         "/allItems", "/item/", "/comm/").permitAll()
-                                .requestMatchers("/me", "/**", "/comm/del/", "/comm/post/").authenticated()
+                                .requestMatchers("/me", "/comm/del/", "/comm/post/").authenticated()
                                 .requestMatchers(
                                         "/saveItem", "/item/delete/", "/item/upd/",
                                         "/cat/**",
-                                        "/admin/**").hasRole("ADMIN")
+                                        "/admin/users", "/admin/users/update", "/admin/users/remove", "/admin/users/create", "/admin/users/grant"
+                                ).hasRole("ADMIN")
                                 .anyRequest().denyAll();
                     } catch (Exception e) {
                         throw new RuntimeException(e);

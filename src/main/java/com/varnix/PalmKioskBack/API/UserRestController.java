@@ -9,6 +9,9 @@ import com.varnix.PalmKioskBack.Services.RoleService;
 import com.varnix.PalmKioskBack.Services.UserService;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.GrantedAuthority;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
@@ -23,12 +26,8 @@ public class UserRestController {
 
     private final UserService userService;
 
-    //TEST
-    private final RoleService roleService;
-
-    public UserRestController(UserService userService, RoleService roleService) {
+    public UserRestController(UserService userService) {
         this.userService = userService;
-        this.roleService = roleService;
     }
 
     @GetMapping("/me")
@@ -43,4 +42,6 @@ public class UserRestController {
         }
         return ResponseEntity.ok(new UserInfoDTO(user.get().getId(), user.get().getUsername(), user.get().getEmail(), roles));
     }
+
+
 }

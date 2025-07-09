@@ -19,6 +19,7 @@ com\varnix\PalmKioskBack\Dtos\JwtRequest.class
 com\varnix\PalmKioskBack\Repositories\ItemRepository.class
 com\varnix\PalmKioskBack\Services\UserService.class
 com\varnix\PalmKioskBack\Services\RoleService.class
+com\varnix\PalmKioskBack\Dtos\UpdateUserDTO.class
 com\varnix\PalmKioskBack\Services\CommentService.class
 com\varnix\PalmKioskBack\API\UserRestController.class
 com\varnix\PalmKioskBack\Dtos\UserDTO.class

@@ -1,5 +1,7 @@
 package com.varnix.PalmKioskBack.Dtos;
 
+import com.fasterxml.jackson.annotation.JsonCreator;
+
 import java.util.List;
 
 public class UserDTO {
@@ -9,6 +11,8 @@ public class UserDTO {
     private String email;
     private List<String> roles;
 
+
+
     public UserDTO(Long id, String username, String password, String email, List<String> roles) {
         this.id = id;
         this.username = username;
@@ -16,6 +20,8 @@ public class UserDTO {
         this.email = email;
         this.roles = roles;
     }
+
+    public UserDTO() {}
 
     public UserDTO(Long id, String username, String password, String email) {
         this.id = id;
@@ -54,5 +60,13 @@ public class UserDTO {
 
     public void setEmail(String email) {
         this.email = email;
+    }
+
+    public List<String> getRoles() {
+        return roles;
+    }
+
+    public void setRoles(List<String> roles) {
+        this.roles = roles;
     }
 }
