@@ -31,7 +31,7 @@ public class ItemsController {
     private final ItemService itemService;
     private final CategoryService categoryService;
 
-    private final String uploadDir = "src/main/resources/static/uploads/";
+    private final String uploadDir = "uploads/";
 
     public ItemsController(ItemService itemService,
                            CategoryService categoryService) {

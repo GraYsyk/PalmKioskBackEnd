@@ -27,13 +27,12 @@ public class CommentService {
     public List<CommentDTO> getCommentsByItemId(long userId) {
         List<Comment> comments = commentRepository.findCommentsByItemId(userId);
 
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss");
-
         return comments.stream().map(comment -> {
             CommentDTO dto = new CommentDTO();
             dto.setId(comment.getId());
             dto.setText(comment.getText());
             dto.setUserId(comment.getUser().getId());
+            dto.setRating(comment.getRating());
             dto.setUsername(comment.getUser().getUsername());
             dto.setItemId(comment.getItem().getId());
             return dto;

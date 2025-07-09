@@ -48,17 +48,18 @@ public class SecurityConfigs {
                 .authorizeHttpRequests(auth -> {
                     try {
                         auth
-                                .requestMatchers("/", "/main", "/auth", "refresh", "/register", "/admin/",
+                                .requestMatchers("/", "/main", "/auth", "/refresh", "/register",
                                         "/v3/api-docs/**",
                                         "/swagger-ui.html",
                                         "/swagger-ui/**",
                                         "/swagger-resources/**",
                                         "/webjars/**",
-                                        "/allItems", "/item/", "/comm/").permitAll()
-                                .requestMatchers("/me", "/comm/del/", "/comm/post/").authenticated()
+                                        "/allItems", "/item/", "/comm/**", "/uploads/**").permitAll()
+                                .requestMatchers("/me", "/comm/del/**", "/comm/post/**").authenticated()
                                 .requestMatchers(
                                         "/saveItem", "/item/delete/", "/item/upd/",
                                         "/cat/**",
+                                        "/comm/user/**",
                                         "/admin/users", "/admin/users/update", "/admin/users/remove", "/admin/users/create", "/admin/users/grant"
                                 ).hasRole("ADMIN")
                                 .anyRequest().denyAll();
