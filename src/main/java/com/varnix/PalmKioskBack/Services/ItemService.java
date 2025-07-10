@@ -3,8 +3,12 @@ package com.varnix.PalmKioskBack.Services;
 import com.varnix.PalmKioskBack.Entities.Item;
 import com.varnix.PalmKioskBack.Repositories.CategoryRepository;
 import com.varnix.PalmKioskBack.Repositories.ItemRepository;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ExceptionHandler;
+import org.springframework.web.bind.annotation.ResponseStatus;
 
 import java.util.List;
 import java.util.Optional;
@@ -13,12 +17,11 @@ import java.util.Optional;
 public class ItemService{
 
     private final ItemRepository itemRepository;
-    private final CategoryRepository categoryRepository;
+
 
     @Autowired
-    public ItemService(ItemRepository itemRepository, CategoryRepository categoryRepository) {
+    public ItemService(ItemRepository itemRepository) {
         this.itemRepository = itemRepository;
-        this.categoryRepository = categoryRepository;
     }
 
     public boolean existsById(Long id) {
@@ -35,8 +38,13 @@ public class ItemService{
         itemRepository.save(item);
     }
 
+    @ResponseStatus(HttpStatus.NOT_FOUND)
+    @ExceptionHandler(EntityNotFoundException.class)
     public void deleteById(Long id) {
-        itemRepository.deleteById(id);
+        Item item = itemRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Item with id " + id + " not found"));
+        itemRepository.delete(item);
     }
+
 
 }
