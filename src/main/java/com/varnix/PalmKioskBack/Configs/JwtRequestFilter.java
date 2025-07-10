@@ -37,24 +37,24 @@ public class JwtRequestFilter extends OncePerRequestFilter {
             jwtToken = authHeader.substring(7);
             try {
                 username = jwtTokenUtils.getUsernameFromToken(jwtToken);
-            } catch (ExpiredJwtException e) {
-                logger.error("Expired JWT token!");
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "JWT token expired");
-                return;
-            } catch (SignatureException e) {
-                logger.error("Invalid JWT token!");
-                response.sendError(HttpServletResponse.SC_UNAUTHORIZED, "Invalid JWT token");
-                return;
+            } catch (ExpiredJwtException | SignatureException e) {
+                logger.warn("Invalid JWT token: " + e.getMessage());
+            } catch (Exception e) {
+                logger.warn("JWT parsing error: " + e.getMessage());
             }
-
         }
 
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(username,
+            UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
+                    username,
                     null,
-                    jwtTokenUtils.getRolesFromToken(jwtToken).stream().map(SimpleGrantedAuthority::new).collect(Collectors.toList()));
+                    jwtTokenUtils.getRolesFromToken(jwtToken).stream()
+                            .map(SimpleGrantedAuthority::new)
+                            .collect(Collectors.toList()));
             SecurityContextHolder.getContext().setAuthentication(token);
         }
+
         filterChain.doFilter(request, response);
     }
+
 }

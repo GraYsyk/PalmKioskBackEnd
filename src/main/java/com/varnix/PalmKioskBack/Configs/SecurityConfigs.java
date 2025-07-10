@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Lazy;
+import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
@@ -54,7 +55,8 @@ public class SecurityConfigs {
                                         "/swagger-ui/**",
                                         "/swagger-resources/**",
                                         "/webjars/**",
-                                        "/allItems", "/item/", "/comm/**", "/uploads/**", "/adm").permitAll()
+                                        "/allItems", "/item/**", "/comm/**", "/uploads/**", "/adm").permitAll()
+                                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .requestMatchers("/me", "/comm/del/**", "/comm/post/**").authenticated()
                                 .requestMatchers(
                                         "/saveItem", "/item/delete/**", "/item/upd/**",
@@ -86,12 +88,14 @@ public class SecurityConfigs {
     @Bean
     CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:8080")); // разрешаем ВСЕМ
+        configuration.setAllowedOrigins(List.of("http://localhost:5173", "http://localhost:8080"));
         configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
         configuration.setAllowedHeaders(List.of("*"));
+        configuration.setExposedHeaders(List.of("Authorization"));
         configuration.setAllowCredentials(true);
         UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
         source.registerCorsConfiguration("/**", configuration);
+        configuration.setMaxAge(3600L); // кэшировать preflight на 1 час
         return source;
     }
 
