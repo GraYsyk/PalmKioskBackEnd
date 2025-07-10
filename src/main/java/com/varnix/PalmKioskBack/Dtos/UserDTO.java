@@ -1,7 +1,5 @@
 package com.varnix.PalmKioskBack.Dtos;
 
-import com.fasterxml.jackson.annotation.JsonCreator;
-
 import java.util.List;
 
 public class UserDTO {

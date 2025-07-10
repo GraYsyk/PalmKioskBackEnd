@@ -23,6 +23,7 @@ import java.time.format.DateTimeParseException;
 import java.util.List;
 import java.util.Optional;
 
+@CrossOrigin
 @RestController
 @RequestMapping("/comm")
 public class CommentController {
