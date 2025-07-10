@@ -1,8 +1,6 @@
 package com.varnix.PalmKioskBack.Entities;
 
 import jakarta.persistence.*;
-
-import java.security.Timestamp;
 import java.time.LocalDateTime;
 
 
