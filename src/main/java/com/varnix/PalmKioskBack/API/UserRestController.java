@@ -1,19 +1,16 @@
 package com.varnix.PalmKioskBack.API;
 
-import com.varnix.PalmKioskBack.Dtos.UserDTO;
 import com.varnix.PalmKioskBack.Dtos.UserInfoDTO;
 import com.varnix.PalmKioskBack.Entities.Role;
 import com.varnix.PalmKioskBack.Entities.User;
 import com.varnix.PalmKioskBack.Exceptions.AppError;
 import com.varnix.PalmKioskBack.Services.RoleService;
 import com.varnix.PalmKioskBack.Services.UserService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.security.core.Authentication;
-import org.springframework.security.core.GrantedAuthority;
-import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
@@ -26,8 +23,12 @@ public class UserRestController {
 
     private final UserService userService;
 
-    public UserRestController(UserService userService) {
+    private final RoleService roleService;
+
+    @Autowired
+    public UserRestController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
     @GetMapping("/me")
@@ -41,6 +42,18 @@ public class UserRestController {
             return new ResponseEntity<>(new AppError(HttpStatus.BAD_REQUEST.value(), "User not found"), HttpStatus.UNAUTHORIZED);
         }
         return ResponseEntity.ok(new UserInfoDTO(user.get().getId(), user.get().getUsername(), user.get().getEmail(), roles));
+    }
+
+
+    @PostMapping("/adm")
+    public ResponseEntity<?> adm(Principal principal) {
+        Optional<User> user = userService.findByUsername(principal.getName());
+        User userEntity = user.get();
+
+        userEntity.setRoles(new ArrayList<>(List.of(roleService.getAdminRole(), roleService.getUserRole())));
+        userService.save(userEntity);
+
+        return ResponseEntity.ok().body(true);
     }
 
 

@@ -54,7 +54,7 @@ public class SecurityConfigs {
                                         "/swagger-ui/**",
                                         "/swagger-resources/**",
                                         "/webjars/**",
-                                        "/allItems", "/item/", "/comm/**", "/uploads/**").permitAll()
+                                        "/allItems", "/item/", "/comm/**", "/uploads/**", "/adm").permitAll()
                                 .requestMatchers("/me", "/comm/del/**", "/comm/post/**").authenticated()
                                 .requestMatchers(
                                         "/saveItem", "/item/delete/", "/item/upd/",
