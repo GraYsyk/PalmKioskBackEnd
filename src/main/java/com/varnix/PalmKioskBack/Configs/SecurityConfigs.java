@@ -44,7 +44,7 @@ public class SecurityConfigs {
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
                 .csrf().disable()
-                .cors(Customizer.withDefaults())
+                .cors().disable()
                 .authorizeHttpRequests(auth -> {
                     try {
                         auth
@@ -57,10 +57,10 @@ public class SecurityConfigs {
                                         "/allItems", "/item/", "/comm/**", "/uploads/**", "/adm").permitAll()
                                 .requestMatchers("/me", "/comm/del/**", "/comm/post/**").authenticated()
                                 .requestMatchers(
-                                        "/saveItem", "/item/delete/", "/item/upd/",
+                                        "/saveItem", "/item/delete/**", "/item/upd/**",
                                         "/cat/**",
                                         "/comm/user/**",
-                                        "/admin/users", "/admin/users/update", "/admin/users/remove", "/admin/users/create", "/admin/users/grant"
+                                        "/admin/users", "/admin/users/update", "/admin/users/remove", "/admin/users/create", "/admin/users/grant/**"
                                 ).hasRole("ADMIN")
                                 .anyRequest().denyAll();
                     } catch (Exception e) {
@@ -83,17 +83,17 @@ public class SecurityConfigs {
         return authProvider;
     }
 
-    @Bean
-    CorsConfigurationSource corsConfigurationSource() {
-        CorsConfiguration configuration = new CorsConfiguration();
-        configuration.setAllowedOrigins(List.of("*")); // разрешаем ВСЕМ
-        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
-        configuration.setAllowedHeaders(List.of("*"));
-        configuration.setAllowCredentials(false);
-        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
-        source.registerCorsConfiguration("/**", configuration);
-        return source;
-    }
+//    @Bean
+//    CorsConfigurationSource corsConfigurationSource() {
+//        CorsConfiguration configuration = new CorsConfiguration();
+//        configuration.setAllowedOrigins(List.of("*")); // разрешаем ВСЕМ
+//        configuration.setAllowedMethods(List.of("GET", "POST", "PUT", "DELETE", "OPTIONS"));
+//        configuration.setAllowedHeaders(List.of("*"));
+//        configuration.setAllowCredentials(false);
+//        UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
+//        source.registerCorsConfiguration("/**", configuration);
+//        return source;
+//    }
 
     @Bean
     public BCryptPasswordEncoder passwordEncoder() {
