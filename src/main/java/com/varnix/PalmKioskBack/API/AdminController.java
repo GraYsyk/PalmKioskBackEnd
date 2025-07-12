@@ -36,6 +36,16 @@ public class AdminController {
 
     //USER
 
+    @GetMapping("/users/search")
+    public Page<UserDTO> searchUsers(
+            @RequestParam(required = false) String username,
+            @RequestParam(required = false) String email,
+            @RequestParam(required = false) Boolean isAdmin,
+            @ParameterObject Pageable pageable
+    ) {
+        return userService.searchUsers(username, email, isAdmin, pageable);
+    }
+
     @Operation(summary = "Create request like: GET /admin/users?page=0&size=10&sort=username,asc (asc - Ascending)\n")
     @GetMapping("/users")
     public Page<UserDTO> getAll(

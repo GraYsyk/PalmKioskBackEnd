@@ -55,14 +55,14 @@ public class SecurityConfigs {
                                         "/swagger-ui/**",
                                         "/swagger-resources/**",
                                         "/webjars/**",
-                                        "/allItems", "/item/**", "/comm/**", "/uploads/**", "/adm", "/cat/all").permitAll()
+                                        "/allItems", "/item/**", "/comm/**", "/uploads/**", "/adm", "/cat/all", "/items/search").permitAll()
                                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
                                 .requestMatchers("/me", "/comm/del/**", "/comm/post/**").authenticated()
                                 .requestMatchers(
                                         "/saveItem", "/item/delete/**", "/item/upd/**",
                                         "/cat/**",
                                         "/comm/user/**",
-                                        "/admin/users", "/admin/users/update", "/admin/users/remove", "/admin/users/create", "/admin/users/grant/**"
+                                        "/admin/users", "/admin/users/update", "/admin/users/remove", "/admin/users/create", "/admin/users/grant/**", "/admin/users/search"
                                 ).hasRole("ADMIN")
                                 .anyRequest().denyAll();
                     } catch (Exception e) {

@@ -7,7 +7,8 @@ import com.varnix.PalmKioskBack.Entities.Item;
 import com.varnix.PalmKioskBack.Exceptions.AppError;
 import com.varnix.PalmKioskBack.Services.CategoryService;
 import com.varnix.PalmKioskBack.Services.ItemService;
-import org.springframework.http.HttpHeaders;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,13 +17,11 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
-import javax.swing.text.html.Option;
 import java.io.File;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.List;
 import java.util.Optional;
 
 
@@ -60,17 +59,31 @@ public class ItemsController {
         return ResponseEntity.ok(itemDTO);
     }
 
-    @GetMapping("/allItems")
-    public ResponseEntity<List<ItemDTO>> getAllItems() {
-        List<Item> items = itemService.getAllItems();
-        if (items.isEmpty()) return ResponseEntity.noContent().build();
+    @GetMapping("/items/search")
+    public ResponseEntity<Page<ItemDTO>> searchItems(
+            @RequestParam(required = false) String name,
+            @RequestParam(required = false) String category,
+            @RequestParam(required = false) Double minPrice,
+            @RequestParam(required = false) Double maxPrice,
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Page<Item> resultPage = itemService.searchItems(name, category, minPrice, maxPrice, PageRequest.of(page, size));
+        Page<ItemDTO> dtoPage = resultPage.map(this::convertToDTO);
+        return ResponseEntity.ok(dtoPage);
+    }
 
-        List<ItemDTO> itemDTOs = items.stream()
-                .map(this::convertToDTO)
-                .toList();
+    @GetMapping("/allItems")
+    public ResponseEntity<Page<ItemDTO>> getAllItems(
+            @RequestParam(defaultValue = "0") int page,
+            @RequestParam(defaultValue = "10") int size
+    ) {
+        Page<Item> itemsPage = itemService.getAllItems(PageRequest.of(page, size));
+        Page<ItemDTO> itemDTOs = itemsPage.map(this::convertToDTO);
 
         return ResponseEntity.ok(itemDTOs);
     }
+
 
     @PostMapping(value = "/saveItem", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<?> createItem(
@@ -257,5 +270,4 @@ public class ItemsController {
         dto.setCategory(item.getCategory().getName()); // если категория может быть null — добавить проверку
         return dto;
     }
-
 }
