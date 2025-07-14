@@ -4,20 +4,16 @@ import com.varnix.PalmKioskBack.Dtos.UserInfoDTO;
 import com.varnix.PalmKioskBack.Entities.Role;
 import com.varnix.PalmKioskBack.Entities.User;
 import com.varnix.PalmKioskBack.Exceptions.AppError;
-import com.varnix.PalmKioskBack.Services.RoleService;
 import com.varnix.PalmKioskBack.Services.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.security.Principal;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
-
 
 
 @RestController
@@ -25,12 +21,9 @@ public class UserRestController {
 
     private final UserService userService;
 
-    private final RoleService roleService;
-
     @Autowired
-    public UserRestController(UserService userService, RoleService roleService) {
+    public UserRestController(UserService userService) {
         this.userService = userService;
-        this.roleService = roleService;
     }
 
     @GetMapping("/me")
@@ -45,18 +38,4 @@ public class UserRestController {
         }
         return ResponseEntity.ok(new UserInfoDTO(user.get().getId(), user.get().getUsername(), user.get().getEmail(), roles));
     }
-
-
-    @PostMapping("/adm")
-    public ResponseEntity<?> adm(Principal principal) {
-        Optional<User> user = userService.findByUsername(principal.getName());
-        User userEntity = user.get();
-
-        userEntity.setRoles(new ArrayList<>(List.of(roleService.getAdminRole(), roleService.getUserRole())));
-        userService.save(userEntity);
-
-        return ResponseEntity.ok().body(true);
-    }
-
-
 }
